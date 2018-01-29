@@ -2,10 +2,14 @@ package mx.jovannypcg.grpcserver;
 
 import io.grpc.ServerBuilder;
 import mx.jovannypcg.grpcserver.services.impl.GreeterImpl;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.embedded.netty.NettyWebServer;
 
 import java.io.IOException;
 import java.util.logging.Logger;
 
+@SpringBootApplication
 public class Server {
     private static final Logger LOGGER = Logger.getLogger(Server.class.getSimpleName());
 
