@@ -1,10 +1,8 @@
 package mx.jovannypcg.grpcserver;
 
 import io.grpc.ServerBuilder;
-import mx.jovannypcg.grpcserver.services.impl.GreeterImpl;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import mx.jovannypcg.grpcserver.services.impl.RepositoryEnrollerServiceImpl;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.embedded.netty.NettyWebServer;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -35,7 +33,7 @@ public class Server {
     private void start() throws IOException {
         server = ServerBuilder
                 .forPort(PORT)
-                .addService(new GreeterImpl())
+                .addService(new RepositoryEnrollerServiceImpl())
                 .build()
                 .start();
 
