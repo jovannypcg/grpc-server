@@ -11,7 +11,6 @@ import java.util.Arrays;
 @Component
 public class Publisher {
     private static final Logger LOGGER = LoggerFactory.getLogger(Publisher.class);
-    private static final String QUEUE_NAME = "repository_enrollments";
 
     private RabbitTemplate rabbitTemplate;
 
@@ -25,6 +24,6 @@ public class Publisher {
         LOGGER.info("Sending message to AMQP: " + repository.getName());
         LOGGER.info("Byte representation: " + Arrays.toString(repositoryBytes));
 
-        rabbitTemplate.convertAndSend(QUEUE_NAME, repositoryBytes);
+        rabbitTemplate.convertAndSend(repositoryBytes);
     }
 }
