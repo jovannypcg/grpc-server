@@ -1,13 +1,16 @@
 package mx.jovannypcg.grpcserver;
 
 import io.grpc.ServerBuilder;
+import mx.jovannypcg.grpcserver.services.RepositoryEnrollerServiceGrpc;
 import mx.jovannypcg.grpcserver.services.impl.RepositoryEnrollerServiceImpl;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.logging.Logger;
 
-@SpringBootApplication
+@Component
 public class Server {
     private static final Logger LOGGER = Logger.getLogger(Server.class.getSimpleName());
 
@@ -15,25 +18,25 @@ public class Server {
 
     private io.grpc.Server server;
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        final Server server = new Server();
-        server.start();
-        server.blockUntilShutdown();
+    private RepositoryEnrollerServiceImpl repositoryEnrollerService;
+
+    public Server(RepositoryEnrollerServiceImpl repositoryEnrollerService) {
+        this.repositoryEnrollerService = repositoryEnrollerService;
     }
 
     /**
      * Await termination on the main thread since the grpc library uses daemon threads.
      */
-    private void blockUntilShutdown() throws InterruptedException {
+    public void blockUntilShutdown() throws InterruptedException {
         if (server != null) {
             server.awaitTermination();
         }
     }
 
-    private void start() throws IOException {
+    public void start() throws IOException {
         server = ServerBuilder
                 .forPort(PORT)
-                .addService(new RepositoryEnrollerServiceImpl())
+                .addService(repositoryEnrollerService)
                 .build()
                 .start();
 
@@ -50,7 +53,7 @@ public class Server {
         });
     }
 
-    private void stop() {
+    public void stop() {
         if (server != null) {
             server.shutdown();
         }
