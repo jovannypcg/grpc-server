@@ -92,6 +92,10 @@ publishing {
     }
 }
 
+release {
+    tagTemplate = "${version}"
+}
+
 artifactory {
     contextUrl = "${artifactory_contextUrl}"
     publish {
