@@ -14,7 +14,7 @@ def grpcVersion = '1.9.0'
 buildscript {
     ext {
         springBootVersion = '2.0.0.M7'
-        releaseVersion = version.endsWith('-SNAPSHOT') ? version.substring(0, version.indexOf('-')) : version
+        rVersion = version.endsWith('-SNAPSHOT') ? version.substring(0, version.indexOf('-')) : version
     }
 
     repositories {
@@ -93,7 +93,7 @@ publishing {
 }
 
 release {
-    tagTemplate = "v${releaseVersion}"
+    tagTemplate = "v${rVersion}"
 }
 
 artifactory {
@@ -103,7 +103,7 @@ artifactory {
             repoKey = 'gradle-dev-local'
             username = "${artifactory_user}"
             password = "${artifactory_password}"
-            releaseVersion
+            version = rVersion
             maven = true
         }
         defaults {
@@ -115,7 +115,7 @@ artifactory {
             repoKey = 'gradle-dev'
             username = "${artifactory_user}"
             password = "${artifactory_password}"
-            version = releaseVersion
+            version = rVersion
             maven = true
         }
     }
