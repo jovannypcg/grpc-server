@@ -99,7 +99,7 @@ artifactory {
             repoKey = 'gradle-dev-local'
             username = "${artifactory_user}"
             password = "${artifactory_password}"
-            // version = releaseVersion
+            releaseVersion
             maven = true
         }
         defaults {
@@ -111,7 +111,7 @@ artifactory {
             repoKey = 'gradle-dev'
             username = "${artifactory_user}"
             password = "${artifactory_password}"
-            // version = releaseVersion
+            version = releaseVersion
             maven = true
         }
     }
