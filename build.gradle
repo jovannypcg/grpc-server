@@ -101,7 +101,6 @@ artifactory {
             repoKey = 'gradle-dev-local'
             username = "${artifactory_user}"
             password = "${artifactory_password}"
-            version = '1.2-SNAPSHOT'
             maven = true
         }
         defaults {
