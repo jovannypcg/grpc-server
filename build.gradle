@@ -93,7 +93,7 @@ publishing {
 }
 
 release {
-    tagTemplate = "v${version}"
+    tagTemplate = "v${releaseVersion}"
 }
 
 artifactory {
