@@ -14,6 +14,9 @@ def grpcVersion = '1.9.0'
 buildscript {
     ext {
         springBootVersion = '2.0.0.M7'
+        printVersion = { a ->
+            println "${version} " + a
+        }
     }
 
     repositories {
@@ -98,13 +101,14 @@ artifactory {
             repoKey = 'gradle-dev-local'
             username = "${artifactory_user}"
             password = "${artifactory_password}"
-            version = '1.0'
+            version = '1.0-SNAPSHOT'
             maven = true
         }
         defaults {
             publications('mavenJava')
             publishArtifacts = true
         }
+        printVersion('sii')
     }
     resolve {
         repository {
